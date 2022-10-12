@@ -1,8 +1,7 @@
 import { useContext } from 'react';
 import AuthPage from '../pages/AuthPage';
-import MainPage from '../pages/MainPage';
-import { BrowserRouter as Router } from 'react-router-dom'
 import { UserContext } from '../context/UserContext';
+import MainNav from './MainNav';
 
 export default function AppNav() {
   const { isLoading, userAddress } = useContext(UserContext);
@@ -14,8 +13,8 @@ export default function AppNav() {
   }
 
   return (
-    <Router>
-      {userAddress === '' ? <AuthPage /> : <MainPage />}
-    </Router>
+    <>
+      {userAddress === '' ? <AuthPage /> : <MainNav />}
+    </>
   )
 }

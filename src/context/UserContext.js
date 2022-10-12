@@ -12,7 +12,12 @@ const PAPER_MONEY_ADDRESS = "0x57ce059C55b71424299Ef4C4795e1756378B5Cfd"
 const paperContract = new caver.klay.Contract(PaperMoneyAbi, PAPER_MONEY_ADDRESS);
 const factoryContract = new caver.klay.Contract(FactoryAbi, FACTORY_ADDRESS);
 
-export const UserContext = createContext();
+export const UserContext = createContext({
+  setIsLoading: () => { },
+  setUserAddress: () => { },
+  setUserBalance: () => { },
+  setUserTickets: () => { },
+});
 
 export const UserProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,18 +36,18 @@ export const UserProvider = ({ children }) => {
 
         let timerId = setInterval(() => {
           axios.get(`${API_RESULT}${request_key}`)
-            .then((res) => {
+            .then(async (res) => {
               if (res.data.result) {
-                setUserAddress(res.data.result.klaytn_address);
-
+                const address = res.data.result.klaytn_address
+                const balance = await paperContract.methods.balanceOf(address).call();
+                setUserAddress(address);
+                setUserBalance(balance);
                 clearInterval(timerId);
               }
             })
         }, 1000);
       })
       .catch((error) => console.log(error));
-    const balance = await paperContract.methods.balanceOf(userAddress).call();
-    setUserBalance(balance);
     setIsLoading(false);
   }
 
