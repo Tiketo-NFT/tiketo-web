@@ -4,11 +4,10 @@ import { KLIP_URL, API_PREPARE, API_RESULT } from '../api/apiLinks';
 import Caver from 'caver-js';
 import { PaperMoneyAbi } from '../abi/PaperMoney.abi';
 import { FactoryAbi } from '../abi/Factory.abi';
+import { FACTORY_ADDRESS, PAPER_MONEY_ADDRESS, TICKET_ADDRESS } from '../address';
 
 
-const caver = new Caver(new Caver.providers.HttpProvider('https://public-node-api.klaytnapi.com/v1/cypress'));
-const FACTORY_ADDRESS = "0xA87cbd3C8bE1238c58EcFD91Ece7cD74781aE3B1"
-const PAPER_MONEY_ADDRESS = "0x57ce059C55b71424299Ef4C4795e1756378B5Cfd"
+const caver = new Caver(new Caver.providers.HttpProvider(process.env.REACT_APP_KLAYTN_MAINNET_NODE_URI));
 const paperContract = new caver.klay.Contract(PaperMoneyAbi, PAPER_MONEY_ADDRESS);
 const factoryContract = new caver.klay.Contract(FactoryAbi, FACTORY_ADDRESS);
 
