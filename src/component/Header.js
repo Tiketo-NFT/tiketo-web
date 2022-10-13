@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../context/UserContext';
+import React from 'react';
 import logo_white from '../assets/logo_white.png';
 import { RiWallet3Line } from 'react-icons/ri';
 import styled from 'styled-components';
@@ -7,6 +6,10 @@ import { useSelector } from 'react-redux';
 
 
 const StyleHeader = styled.div`
+    position: fixed;
+    left: 0;
+    width: 100%;
+
     background-color: #1a1a1a;
     color: #FFFFFF;
     display: flex;
@@ -35,9 +38,7 @@ const StyleBalancePart = styled.div`
 `;
 
 function Header() {
-    // const { userAddress, userBalance } = useContext(UserContext);
     const {address, balance} = useSelector((state) => state.user);
-    console.log(address, balance);
 
     return (
         <StyleHeader>

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import CashImg from '../assets/img/Cash.png';
-import { getByDisplayValue } from '@testing-library/react';
 
 
 const InfoBox = styled.div`
@@ -35,7 +34,7 @@ function FestivalInfoBox({ festival }) {
             alignItems: 'center',
             color: 'black',
           }}>
-            < img src={CashImg} style={{ width: '16px', marginRight: '4px' }} />
+            <img src={CashImg} style={{ width: '16px', marginRight: '4px' }} />
             <span style={{ fontSize: '24px', fontWeight: 'bold', marginRight: '4px' }}>{festival.price}</span>pUSD
           </div>
         </div>

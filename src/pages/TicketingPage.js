@@ -7,6 +7,7 @@ function TicketingPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { festival } = location.state;
+  console.log(festival);
   return (
     <Layout>
       <div>
