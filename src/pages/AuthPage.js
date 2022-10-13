@@ -1,34 +1,28 @@
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import logo from '../assets/logo.png';
+import KlipLogin from '../assets/img/KlipLogin.png';
+import styled from 'styled-components';
+
+const StyledAuth = styled.div`
+  width: 100%;
+  height: 100vh;
+  margin:0;
+  padding:10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default function AuthPage() {
   const { connect } = useContext(UserContext);
 
   return (
-    <>
-      <img src='../../public/icons/favicon-128.png' alt='logo' />
-      <h1>Ticketo</h1>
-      <button onClick={connect}>Klip으로 로그인</button>
-    </>
+    <StyledAuth>
+      <img src={logo} alt='logo' style={{ width: 60 }} />
+      <h1 style={{ marginBottom: 100 }}>Ticketo</h1>
+      <img onClick={connect} src={KlipLogin} style={{ width: 280, marginBottom: 200 }} />
+    </StyledAuth>
   )
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   logo: {
-//     width: 50,
-//     height: 50
-//   },
-//   klipButton: {
-//     backgroundColor: 'blue',
-//     padding: 10,
-//     borderRadius: 10,
-//   },
-//   text: {
-//     color: 'white'
-//   }
-// });

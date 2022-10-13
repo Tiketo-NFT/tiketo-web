@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaAngleRight } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 
 const InfoBox = styled.div`
@@ -13,21 +14,20 @@ const InfoBox = styled.div`
   border-width: 1;
 `;
 
-function FestivalInfoBox ({festival}) {
-    console.log(festival);
-    return (
-      <>
-        <InfoBox>
-            <img src={festival.thumbImg} style={{width:100}} />
-            <div>
-              <p>{festival.name}</p>
-              <p>{festival.description}</p>
-              <p>{festival.price} pUSD</p>
-            </div>
-            <FaAngleRight />
-        </InfoBox>
-        </>
-    );
+function FestivalInfoBox({ festival }) {
+  return (
+    <Link to={`/detail/${festival.index}`} state={{ festival: festival }}>
+      <InfoBox>
+        <img src={festival.thumbImg} style={{ width: 100 }} />
+        <div>
+          <p>{festival.name}</p>
+          <p>{festival.description}</p>
+          <p>{festival.price} pUSD</p>
+        </div>
+        <FaAngleRight />
+      </InfoBox>
+    </Link>
+  );
 }
 
 export default FestivalInfoBox;
