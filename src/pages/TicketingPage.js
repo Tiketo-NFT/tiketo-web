@@ -34,7 +34,7 @@ const BackBtn = styled.div`
   font-weight: bold;
 `;
 
-const NextBtn = styled.div`
+export const NextBtn = styled.div`
   background-color: black;
   font-weight: bold;
   color: white;

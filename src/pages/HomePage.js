@@ -12,16 +12,17 @@ import example_festivals from '../assets/img/example_festivals/example_festivals
 
 
 
-const SubtitleBar = styled.div`
+export const SubtitleBar = styled.div`
     display:flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-weight: 500;
+    font-weight: bold;
 `;
 
-const Body = styled.div`
+export const Body = styled.div`
     background-color: #F0F0F0;
+    min-height: 80vh;
     padding: 24px;
 `;
 

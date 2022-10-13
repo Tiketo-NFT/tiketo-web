@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import CashImg from '../assets/img/Cash.png';
 
 
-const InfoBox = styled.div`
+export const InfoBox = styled.div`
   padding: 10px;
   border: 0.1px solid #676767;
   background-color: white;
