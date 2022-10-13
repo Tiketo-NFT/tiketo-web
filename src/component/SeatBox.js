@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { nanoid } from '@reduxjs/toolkit';
 
 const SEAT_NUMBER = ['01', '02', '03', '04', '05', '06', '07', '08',]
 const SEAT_ALPHA = ['', 'A', 'B', 'C', 'D', 'E']
@@ -27,9 +26,7 @@ const Cell = styled.div`
   color: #9d9d9d;
 `;
 
-function SeatBox({ seatInfo, setSeat }) {
-  const [selectedSeat, setSelectedSeat] = useState();
-
+function SeatBox({ seatInfo, setSeat, selectedSeat, setSelectedSeat }) {
   let cnt = 0;
 
   const onClickSeat = (e) => {

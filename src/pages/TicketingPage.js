@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LayoutNoFooter from '../component/LayoutNoFooter';
 import SeatBox from '../component/SeatBox';
@@ -6,20 +6,24 @@ import styled from 'styled-components';
 import XIcon from '../assets/img/XIcon.svg';
 import LineImg from '../assets/img/line.svg';
 
+import Caver from "caver-js";
+import { TicketAbi } from '../abi/Ticket.abi';
+import { TICKET_ADDRESS } from '../address';
+
 
 // 가상의 seatInfo 가정하고 렌더링해보기.
-let seatInfo = Array.from({ length: 40 }, (v, i) => false);
-seatInfo[2] = true;
-seatInfo[10] = true;
-seatInfo[15] = true;
-seatInfo[16] = true;
-seatInfo[19] = true;
-seatInfo[28] = true;
-seatInfo[30] = true;
-seatInfo[31] = true;
-seatInfo[32] = true;
+// let seatInfo = Array.from({ length: 40 }, (v, i) => false);
+// seatInfo[2] = true;
+// seatInfo[10] = true;
+// seatInfo[15] = true;
+// seatInfo[16] = true;
+// seatInfo[19] = true;
+// seatInfo[28] = true;
+// seatInfo[30] = true;
+// seatInfo[31] = true;
+// seatInfo[32] = true;
 
-const BottomSheet = styled.div`
+export const LikeBottomSheet = styled.div`
   width: 100%;
   height: 50vh;
   background-color: white;
@@ -30,7 +34,7 @@ const BottomSheet = styled.div`
   flex-grow: 1;
 `;
 
-const BackBtn = styled.div`
+export const BackBtn = styled.div`
   font-weight: bold;
 `;
 
@@ -48,9 +52,32 @@ const Li = styled.li`
 
 function TicketingPage() {
   const [seat, setSeat] = useState('Choosing...');
+  const [selectedSeat, setSelectedSeat] = useState();
+  const [seatInfo, setSeatInfo] = useState(Array.from({ length: 40 }, (v, i) => false))
   const location = useLocation();
   const navigate = useNavigate();
   const { festival } = location.state;
+
+  useEffect(()=> {
+    const festivalIndex = festival.index;
+    const caver = new Caver(new Caver.providers.HttpProvider(process.env.REACT_APP_KLAYTN_MAINNET_NODE_URI));
+    const ticketContract = new caver.klay.Contract(TicketAbi, TICKET_ADDRESS);
+
+    async function fetchSeatInfo() {
+      const len = await ticketContract.methods.totalSupply().call();
+      for (let i = 0; i < len; i++) {
+        const {index, seat} = await ticketContract.methods.ticketInfos(i).call();
+
+        if (index === festivalIndex) {
+          let newSeatInfo = [...seatInfo];
+          newSeatInfo[seat] = true;
+          setSeatInfo(newSeatInfo);
+        }
+      }
+    }
+    
+    fetchSeatInfo();
+  }, []);
 
   return (
     <LayoutNoFooter style={{ overflow: 'hidden' }}>
@@ -65,7 +92,7 @@ function TicketingPage() {
         </div>
       </div>
 
-      <BottomSheet>
+      <LikeBottomSheet>
         <div style={{ padding: '24px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ color: '#676767' }}>
@@ -82,7 +109,7 @@ function TicketingPage() {
 
             <div style={{ width: '100%', textAlign: 'center', border: '1px solid', borderColor: '#E7E7E7', color: '#676767', marginTop: '18px' }}><div style={{ padding: '8px' }}>S T A G E</div></div>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-              <SeatBox seatInfo={seatInfo} setSeat={setSeat} />
+              <SeatBox seatInfo={seatInfo} setSeat={setSeat} selectedSeat={selectedSeat} setSelectedSeat={setSelectedSeat} />
               <img src={LineImg} alt='' style={{ marginTop: '20px', marginBottom: '12px' }} />
             </div>
 
@@ -90,7 +117,7 @@ function TicketingPage() {
               <p style={{ color: '#676767', marginBottom: '12px' }}>Purchase Summary</p>
               <ul style={{ listStyleType: 'circle', marginLeft: '16px' }}>
                 <Li>Number of Tickets: 1 Adult</Li>
-                <Li>Date of Performane: {festival.schedule}</Li>
+                <Li>Date of Performance: {festival.schedule}</Li>
                 <Li>Seat: {seat}</Li>
                 <Li>Total: {festival.price} pUSD</Li>
               </ul>
@@ -98,14 +125,14 @@ function TicketingPage() {
 
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '24px', alignItems: 'center' }}>
               <BackBtn onClick={() => navigate(-1)} style={{ marginLeft: '16px' }}>Back</BackBtn>
-              <Link to='/check' state={{ festival: festival, seat: seat }} style={{ textDecoration: 'none' }}>
+              <Link to='/check' state={{ festival: festival, seatNum: selectedSeat, seatStr: seat }} style={{ textDecoration: 'none' }}>
                 <NextBtn>Confirm and Pay</NextBtn>
               </Link>
             </div>
 
           </div>
         </div>
-      </BottomSheet>
+      </LikeBottomSheet>
     </LayoutNoFooter>
   );
 }
