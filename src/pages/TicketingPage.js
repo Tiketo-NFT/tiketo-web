@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LayoutNoFooter from '../component/LayoutNoFooter';
 import SeatBox from '../component/SeatBox';
 import styled from 'styled-components';
 import XIcon from '../assets/img/XIcon.svg';
+import LineImg from '../assets/img/line.svg';
 
 
 // 가상의 seatInfo 가정하고 렌더링해보기.
@@ -29,7 +30,24 @@ const BottomSheet = styled.div`
   flex-grow: 1;
 `;
 
+const BackBtn = styled.div`
+  font-weight: bold;
+`;
+
+const NextBtn = styled.div`
+  background-color: black;
+  font-weight: bold;
+  color: white;
+  padding: 12px;
+  border-radius: 20px;
+`;
+
+const Li = styled.li`
+  margin: 4px 0;
+`;
+
 function TicketingPage() {
+  const [seat, setSeat] = useState('Choosing...');
   const location = useLocation();
   const navigate = useNavigate();
   const { festival } = location.state;
@@ -63,35 +81,31 @@ function TicketingPage() {
             <div>Please select a seat that you prefer to watch.</div>
 
             <div style={{ width: '100%', textAlign: 'center', border: '1px solid', borderColor: '#E7E7E7', color: '#676767', marginTop: '18px' }}><div style={{ padding: '8px' }}>S T A G E</div></div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <SeatBox seatInfo={seatInfo} />
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <SeatBox seatInfo={seatInfo} setSeat={setSeat} />
+              <img src={LineImg} alt='' style={{ marginTop: '20px', marginBottom: '12px' }} />
             </div>
+
+            <div>
+              <p style={{ color: '#676767', marginBottom: '12px' }}>Purchase Summary</p>
+              <ul style={{ listStyleType: 'circle', marginLeft: '16px' }}>
+                <Li>Number of Tickets: 1 Adult</Li>
+                <Li>Date of Performance: {new Date(festival.schedule).toISOString().slice(0, 10)}</Li>
+                <Li>Seat: {seat}</Li>
+                <Li>Total: {festival.price} pUSD</Li>
+              </ul>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '24px', alignItems: 'center' }}>
+              <BackBtn onClick={() => navigate(-1)} style={{ marginLeft: '16px' }}>Back</BackBtn>
+              <Link to='/check' state={{ festival: festival, seat: seat }} style={{ textDecoration: 'none' }}>
+                <NextBtn>Confirm and Pay</NextBtn>
+              </Link>
+            </div>
+
           </div>
         </div>
       </BottomSheet>
-
-      {/* <div>
-
-        <div>
-          <p>subtitle</p>
-          <p>{festival.description}</p>
-          <p>{festival.schedule}</p>
-          <SeatBox />
-          <p>summary</p>
-          <p>1 Adult</p>
-          <p>{festival.schedule}</p>
-          <p>??? zone</p>
-          <p>Total: {festival.price} pUSD</p>
-
-          <div>
-            <button onClick={() => navigate(-1)}>Back</button>
-            <Link to='/check'>
-              <button>Next</button>
-            </Link>
-          </div>
-
-        </div>
-      </div> */}
     </LayoutNoFooter>
   );
 }

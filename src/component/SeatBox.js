@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { nanoid } from '@reduxjs/toolkit';
 
 const SEAT_NUMBER = ['01', '02', '03', '04', '05', '06', '07', '08',]
 const SEAT_ALPHA = ['', 'A', 'B', 'C', 'D', 'E']
@@ -26,13 +27,25 @@ const Cell = styled.div`
   color: #9d9d9d;
 `;
 
-function SeatBox({ seatInfo }) {
+function SeatBox({ seatInfo, setSeat }) {
+  const [selectedSeat, setSelectedSeat] = useState();
+
+  let cnt = 0;
+
+  const onClickSeat = (e) => {
+    const id = e.target.id - 1;
+    setSelectedSeat(id);
+    const alphaIndex = parseInt(id / 8) + 1;
+    const numIndex = id % 8;
+    setSeat(SEAT_ALPHA[alphaIndex] + SEAT_NUMBER[numIndex]);
+  }
+
   return (
     <div style={{ display: 'flex', width: '320px', marginTop: '12px' }}>
       <GridSide>
         {SEAT_ALPHA.map(function (alpha) {
           return (
-            <Cell>
+            <Cell key={alpha}>
               {alpha}
             </Cell>
           )
@@ -42,18 +55,20 @@ function SeatBox({ seatInfo }) {
       <Grid>
         {SEAT_NUMBER.map(function (num) {
           return (
-            <Cell>
+            <Cell key={num}>
               {num}
             </Cell>
           )
         })}
         {seatInfo.map(function (isReserved) {
+          cnt = cnt + 1;
+          const colorChoice = (selectedSeat === (cnt - 1)) ? 'black' : 'white';
           return (
             <>
               {isReserved ?
-                <div style={{ width: '32px', height: '32px', border: '0.1px solid #9d9d9d', backgroundColor: '#d4d4d4' }}></div>
-                :
-                <div style={{ width: '32px', height: '32px', border: '0.1px solid #9d9d9d', backgroundColor: 'white' }}></div>}
+                <div style={{ width: '32px', height: '32px', border: '0.1px solid #9d9d9d', backgroundColor: '#d4d4d4' }} key={cnt}></div>
+                : <div onClick={onClickSeat} style={{ width: '32px', height: '32px', border: '0.1px solid #9d9d9d', backgroundColor: `${colorChoice}` }} key={cnt} id={cnt}></div>
+              }
             </>
           )
         })}
@@ -62,13 +77,13 @@ function SeatBox({ seatInfo }) {
       <GridSide>
         {SEAT_ALPHA.map(function (num) {
           return (
-            <Cell>
+            <Cell key={num}>
               {num}
             </Cell>
           )
         })}
       </GridSide>
-    </div>
+    </div >
   );
 }
 
