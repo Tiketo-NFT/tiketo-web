@@ -14,7 +14,8 @@ function App() {
 
   useEffect(() => {
     if (festivals.length === 0) {
-      const caver = new Caver(new Caver.providers.HttpProvider(process.env.REACT_APP_KLAYTN_MAINNET_NODE_URI));
+      // const caver = new Caver(new Caver.providers.HttpProvider(process.env.REACT_APP_KLAYTN_MAINNET_NODE_URI));
+      const caver = new Caver(new Caver.providers.HttpProvider('https://public-node-api.klaytnapi.com/v1/cypress'));
       const factoryContract = new caver.klay.Contract(FactoryAbi, FACTORY_ADDRESS);
       async function fetchFestivals() {
         const len = await factoryContract.methods.festivalInfoLength().call();
