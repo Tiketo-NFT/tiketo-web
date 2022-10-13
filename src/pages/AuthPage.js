@@ -3,6 +3,7 @@ import { UserContext } from '../context/UserContext';
 import logo from '../assets/logo.png';
 import KlipLogin from '../assets/img/KlipLogin.png';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 const StyledAuth = styled.div`
   width: 100%;
@@ -17,6 +18,7 @@ const StyledAuth = styled.div`
 
 export default function AuthPage() {
   const { connect } = useContext(UserContext);
+  const dispatch = useDispatch();
 
   return (
     <StyledAuth>
