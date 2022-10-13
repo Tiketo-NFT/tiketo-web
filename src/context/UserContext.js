@@ -20,7 +20,7 @@ export const UserContext = createContext({
 
 export const UserProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [userAddress, setUserAddress] = useState('');
+  const [userAddress, setUserAddress] = useState('usd');
   const [userBalance, setUserBalance] = useState(0);
   const [userTickets, setUserTickets] = useState([]);
 
@@ -38,7 +38,8 @@ export const UserProvider = ({ children }) => {
             .then(async (res) => {
               if (res.data.result) {
                 const address = res.data.result.klaytn_address
-                const balance = await paperContract.methods.balanceOf(address).call();
+                const balancePeb = await paperContract.methods.balanceOf(address).call();
+                const balance = caver.utils.convertFromPeb(balancePeb, 'KLAY');
                 setUserAddress(address);
                 setUserBalance(balance);
                 clearInterval(timerId);
