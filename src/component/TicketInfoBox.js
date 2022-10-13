@@ -35,13 +35,18 @@ const FlexBox = styled.div`
 `;
 
 
-function TicketInfoBox({ ticket }) {
+function TicketInfoBox({ ticket, setOpen, setSelectedTicket }) {
   // ticket의 인덱스로 festivalInfo를 조회하고, 거기서 fullImg를 가져와야 한다.
   const ticketInfo = DummyFestivalInfo;
 
+  const onClick = () => {
+    setOpen((prev) => !prev);
+    setSelectedTicket({festival: ticketInfo, ticket:ticket});
+  }
+
 
   return (
-    <InfoBox>
+    <InfoBox onClick={onClick}>
       <FlexBox>
         <div style={{ width: '100px', height: '100px', position: 'relative' }}>
           <ImgCrop src={ticketInfo.thumbImg} alt='' />

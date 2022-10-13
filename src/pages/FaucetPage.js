@@ -5,7 +5,7 @@ import { NextBtn } from './TicketingPage';
 import styled from 'styled-components';
 import { Body, SubtitleBar } from './HomePage';
 
-const Box = styled.div`
+export const Box = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
