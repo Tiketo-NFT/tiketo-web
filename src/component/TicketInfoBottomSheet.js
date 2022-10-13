@@ -13,8 +13,8 @@ function TicketInfoBottomSheet ({festival, ticket}) {
         <div>
           <p>{festival.name}</p>
           <p>{festival.description}</p>
-          <p>{new Date(festival.schedule).toISOString().slice(0, 10)}</p>
-          <p>1 Adult, {new Date(ticket.schedule).toISOString().slice(0, 10)}, {ticket.seat}</p>
+          <p>{festival.schedule}</p>
+          <p>1 Adult, {ticket.schedule}, {ticket.seat}</p>
           <p>{ticket.price}</p>
         </div>
         <div>

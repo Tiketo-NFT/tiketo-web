@@ -8,8 +8,9 @@ export const festivalSlice = createSlice({
   name: 'festival',
   initialState,
   reducers: {
-    addFestival: (state) => {
-      state.list.append(1);
+    addFestival: (state, action) => {
+      state.list = [...state.list, action.payload];
+      console.log(state.list);
     },
   },
 })

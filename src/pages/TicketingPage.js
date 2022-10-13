@@ -61,7 +61,7 @@ function TicketingPage() {
         <div style={{ position: 'absolute', top: '10%', color: 'white', padding: '24px' }}>
           <h1 style={{ fontWeight: 'bold', marginBottom: '16px' }}>{festival.name}</h1>
           <p style={{ marginBottom: '8px' }}>{festival.description}</p>
-          <p>{new Date(festival.schedule).toISOString().slice(0, 10)}</p>
+          <p>{festival.schedule}</p>
         </div>
       </div>
 
@@ -90,7 +90,7 @@ function TicketingPage() {
               <p style={{ color: '#676767', marginBottom: '12px' }}>Purchase Summary</p>
               <ul style={{ listStyleType: 'circle', marginLeft: '16px' }}>
                 <Li>Number of Tickets: 1 Adult</Li>
-                <Li>Date of Performance: {new Date(festival.schedule).toISOString().slice(0, 10)}</Li>
+                <Li>Date of Performane: {festival.schedule}</Li>
                 <Li>Seat: {seat}</Li>
                 <Li>Total: {festival.price} pUSD</Li>
               </ul>

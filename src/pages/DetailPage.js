@@ -6,7 +6,6 @@ import CashImg from '../assets/img/Cash.png';
 import LayoutNoFooter from '../component/LayoutNoFooter';
 
 
-
 const Body = styled.div`
     background-color: white;
     padding: 24px;
@@ -31,6 +30,7 @@ function DetailPage() {
     const location = useLocation();
     const { festival } = location.state;
 
+
     return (
         <LayoutNoFooter>
             <Body>
@@ -51,7 +51,8 @@ function DetailPage() {
                             <span style={{ fontSize: '24px', fontWeight: 'bold', marginRight: '4px' }}>{festival.price}</span>pUSD
                         </div>
                         <p style={{ marginBottom: '8px' }}>{festival.description}</p>
-                        <p>{new Date(festival.schedule).toISOString().slice(0, 10)}</p>
+                        <p>{festival.schedule}</p>
+                        <p>{festival.scheule}</p>
                         <p style={{ marginTop: '12px', color: '#676767', lineHeight: '150%' }}>Ullamco sunt nulla dolore Lorem deserunt sint. Laborum consequat sunt ea pariatur. Dolor laboris officia esse consequat labore qui aute reprehenderit ipsum qui magna duis. Dolore minim nisi ullamco laborum.</p>
                     </div>
                     <StyledFooterBtn>

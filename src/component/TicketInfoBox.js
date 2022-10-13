@@ -15,7 +15,7 @@ const DummyFestivalInfo = {
   price: 100,
 }
 
-const ImgCrop = styled.img`
+export const ImgCrop = styled.img`
     position: absolute;
     top: 0;
     left: 0;
