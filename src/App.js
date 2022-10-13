@@ -7,9 +7,7 @@ import Global from './style/global';
 function App() {
   return (
     <FontDefault>
-      <UserProvider>
         <AppNav />
-      </UserProvider>
     </FontDefault>
   );
 }

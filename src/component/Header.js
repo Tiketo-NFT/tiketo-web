@@ -3,6 +3,8 @@ import { UserContext } from '../context/UserContext';
 import logo_white from '../assets/logo_white.png';
 import { RiWallet3Line } from 'react-icons/ri';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+
 
 const StyleHeader = styled.div`
     background-color: #1a1a1a;
@@ -33,7 +35,10 @@ const StyleBalancePart = styled.div`
 `;
 
 function Header() {
-    const { userAddress, userBalance } = useContext(UserContext);
+    // const { userAddress, userBalance } = useContext(UserContext);
+    const {address, balance} = useSelector((state) => state.user);
+    console.log(address, balance);
+
     return (
         <StyleHeader>
             <StyleLogoPart>
@@ -42,7 +47,7 @@ function Header() {
             </StyleLogoPart>
             <StyleBalancePart>
                 <RiWallet3Line style={{ fontSize: '18px', paddingBottom: 'px' }} />
-                <p style={{ padding: '6px' }}>{userBalance}</p>
+                <p style={{ padding: '6px' }}>{balance}</p>
                 <p style={{ color: '#C2C2C2', fontStyle: 'italic' }}>$pUSD</p>
             </StyleBalancePart>
         </StyleHeader>

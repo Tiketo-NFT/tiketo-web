@@ -5,18 +5,20 @@ import MainNav from './MainNav';
 import { useSelector } from 'react-redux';
 
 export default function AppNav() {
-  const address = useSelector()
-  const { isLoading, userAddress } = useContext(UserContext);
+  const address = useSelector((state) => state.user.address);
+  console.log(address);
+  console.log('hi');
+  // const { isLoading, userAddress } = useContext(UserContext);
 
-  if (isLoading) {
-    return (
-      <h1>Loading...</h1>
-    )
-  }
+  // if (isLoading) {
+  //   return (
+  //     <h1>Loading...</h1>
+  //   )
+  // }
 
   return (
     <>
-      {userAddress === '' ? <AuthPage /> : <MainNav />}
+      {address === '' ? <AuthPage /> : <MainNav />}
     </>
   )
 }

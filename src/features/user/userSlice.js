@@ -10,8 +10,11 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: (state) => {
-      state.balance += 1
+    login: (state, action) => {
+      console.log(state, action);
+      const { address, balance } = action.payload;
+      state.address = address;
+      state.balance = balance;
     },
     faucet: (state) => {
       state.balance -= 1
