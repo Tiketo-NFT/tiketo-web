@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 
 
 const StyleHeader = styled.div`
-    position: fixed;
-    left: 0;
+    position: sticky;
+    top: 0;
     width: 100%;
 
     background-color: #1a1a1a;

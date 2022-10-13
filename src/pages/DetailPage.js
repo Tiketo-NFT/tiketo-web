@@ -1,10 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Header from '../component/Header';
-import Global from '../style/global';
 import styled from 'styled-components';
 import CashImg from '../assets/img/Cash.png';
+import LayoutNoFooter from '../component/LayoutNoFooter';
+
 
 
 const Body = styled.div`
@@ -32,9 +32,7 @@ function DetailPage() {
     const { festival } = location.state;
 
     return (
-        <>
-            <Global />
-            <Header />
+        <LayoutNoFooter>
             <Body>
                 <div>
                     <div>
@@ -65,7 +63,7 @@ function DetailPage() {
                     </StyledFooterBtn>
                 </div>
             </Body>
-        </>
+        </LayoutNoFooter>
     );
 }
 
