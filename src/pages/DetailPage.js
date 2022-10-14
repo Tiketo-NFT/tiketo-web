@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
 import CashImg from '../assets/img/Cash.png';
 import LayoutNoFooter from '../component/LayoutNoFooter';
 

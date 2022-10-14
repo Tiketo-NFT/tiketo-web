@@ -1,11 +1,9 @@
-import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import LayoutNoFooter from '../../component/LayoutNoFooter';
-import { BackBtn, LikeBottomSheet, NextBtn } from '../TicketingPage';
 
 import XIcon from '../../assets/img/XIcon.svg';
 import WalletIcon from '../../assets/img/Wallet.svg';
@@ -14,6 +12,9 @@ import CashIcon from '../../assets/img/Cash.png';
 
 import { KLIP_URL, API_PREPARE, API_RESULT } from '../../api/apiLinks';
 import { PAPER_MONEY_ADDRESS, FACTORY_ADDRESS } from '../../address';
+
+import LayoutNoFooter from '../../component/LayoutNoFooter';
+import { BackBtn, LikeBottomSheet, NextBtn } from '../TicketingPage';
 import LoadingModal from '../../component/LoadingModal';
 import { buyTicket } from '../../features/user/userSlice';
 

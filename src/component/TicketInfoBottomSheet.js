@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Box } from '../pages/FaucetPage'
 import QRImg from '../assets/img/QRExample.svg';
 import XIcon from '../assets/img/XIcon.svg';

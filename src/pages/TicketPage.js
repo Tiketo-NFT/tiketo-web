@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import Layout from '../component/Layout';
-import { Body, SubtitleBar } from './HomePage';
-import { FaSearch } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
-import Caver from 'caver-js';
-import TicketInfoBox from '../component/TicketInfoBox';
+import { nanoid } from '@reduxjs/toolkit';
 import { BottomSheet } from 'react-spring-bottom-sheet';
+import 'react-spring-bottom-sheet/dist/style.css'
 
+import { FaSearch } from "react-icons/fa";
+import { addTicket } from '../features/user/userSlice';
+
+import { Body, SubtitleBar } from './HomePage';
+import Layout from '../component/Layout';
+import TicketInfoBox from '../component/TicketInfoBox';
+import TicketInfoBottomSheet from '../component/TicketInfoBottomSheet';
+
+import Caver from 'caver-js';
 import { TicketAbi } from '../abi/Ticket.abi';
 import { FactoryAbi } from '../abi/Factory.abi';
 import { TICKET_ADDRESS, FACTORY_ADDRESS } from '../address';
 
-import { nanoid } from '@reduxjs/toolkit';
-
-import 'react-spring-bottom-sheet/dist/style.css'
-import TicketInfoBottomSheet from '../component/TicketInfoBottomSheet';
-import { addTicket } from '../features/user/userSlice';
 
 const SEAT_NUMBER = ['01', '02', '03', '04', '05', '06', '07', '08',]
 const SEAT_ALPHA = ['', 'A', 'B', 'C', 'D', 'E']

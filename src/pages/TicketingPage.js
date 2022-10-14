@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
 import LayoutNoFooter from '../component/LayoutNoFooter';
 import SeatBox from '../component/SeatBox';
-import styled from 'styled-components';
+
 import XIcon from '../assets/img/XIcon.svg';
 import LineImg from '../assets/img/line.svg';
-
 
 import Caver from "caver-js";
 import { TicketAbi } from '../abi/Ticket.abi';

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import '../style/modal.css';
 import Spinner from '../assets/spinner.svg'
 

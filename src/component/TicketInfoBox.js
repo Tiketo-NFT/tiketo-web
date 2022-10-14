@@ -1,7 +1,7 @@
 import React from 'react';
-import { InfoBox } from './FestivalInfoBox';
 import styled from 'styled-components';
 
+import { InfoBox } from './FestivalInfoBox';
 
 export const ImgCrop = styled.img`
     position: absolute;

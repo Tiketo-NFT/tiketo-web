@@ -1,12 +1,15 @@
 import React from 'react';
-import AppNav from './navigation/AppNav';
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+
 import Caver from "caver-js";
 import { FactoryAbi } from './abi/Factory.abi';
 import { FACTORY_ADDRESS } from './address';
+
 import { addFestival } from './features/festival/festivalSlice';
+
+import AppNav from './navigation/AppNav';
+import styled from 'styled-components';
 
 function App() {
   const festivals = useSelector((state) => state.festival.list);
@@ -14,7 +17,6 @@ function App() {
 
   useEffect(() => {
     if (festivals.length === 0) {
-      // const caver = new Caver(new Caver.providers.HttpProvider(process.env.REACT_APP_KLAYTN_MAINNET_NODE_URI));
       const caver = new Caver(new Caver.providers.HttpProvider('https://public-node-api.klaytnapi.com/v1/cypress'));
       const factoryContract = new caver.klay.Contract(FactoryAbi, FACTORY_ADDRESS);
       async function fetchFestivals() {

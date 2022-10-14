@@ -1,8 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+
 import logo_white from '../assets/logo_white.svg';
 import { RiWallet3Line } from 'react-icons/ri';
-import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
 
 const StyleHeader = styled.div`

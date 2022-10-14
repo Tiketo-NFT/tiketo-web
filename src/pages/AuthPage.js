@@ -1,13 +1,16 @@
-import logo from '../assets/logo.png';
-import KlipLogin from '../assets/img/KlipLogin.png';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { KLIP_URL, API_PREPARE, API_RESULT } from '../api/apiLinks';
+import styled from 'styled-components';
+
+import { login } from '../features/user/userSlice';
+
 import Caver from 'caver-js';
 import { PaperMoneyAbi } from '../abi/PaperMoney.abi';
 import {  PAPER_MONEY_ADDRESS } from '../address';
-import { login } from '../features/user/userSlice';
+import { KLIP_URL, API_PREPARE, API_RESULT } from '../api/apiLinks';
+
+import logo from '../assets/logo.png';
+import KlipLogin from '../assets/img/KlipLogin.png';
 
 const caver = new Caver(new Caver.providers.HttpProvider('https://public-node-api.klaytnapi.com/v1/cypress'));
 const paperContract = new caver.klay.Contract(PaperMoneyAbi, PAPER_MONEY_ADDRESS);

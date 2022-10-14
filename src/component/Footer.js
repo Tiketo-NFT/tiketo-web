@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+
 import FaucetIcon from '../assets/img/footer/Faucet.svg'
 import HomeIcon from '../assets/img/footer/Home.svg'
 import TicketIcon from '../assets/img/footer/Ticket.svg'

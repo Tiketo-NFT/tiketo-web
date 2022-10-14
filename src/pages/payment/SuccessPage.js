@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLocation,useNavigate } from 'react-router-dom';
-import LayoutNoFooter from '../../component/LayoutNoFooter';
 import styled from 'styled-components';
+
+import LayoutNoFooter from '../../component/LayoutNoFooter';
 
 import XIcon from '../../assets/img/XIcon.svg';
 import { NextBtn } from '../TicketingPage';

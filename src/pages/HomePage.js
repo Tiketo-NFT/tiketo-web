@@ -1,9 +1,10 @@
 import React from 'react';
-import Layout from '../component/Layout';
-import styled from 'styled-components';
-import { FaSearch } from "react-icons/fa";
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 
+import { FaSearch } from "react-icons/fa";
+
+import Layout from '../component/Layout';
 import FestivalInfoBox from '../component/FestivalInfoBox';
 // import example_festivals from '../assets/img/example_festivals/example_festivals';
 
