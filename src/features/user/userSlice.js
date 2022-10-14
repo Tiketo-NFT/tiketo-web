@@ -27,9 +27,15 @@ export const userSlice = createSlice({
         state.tickets.push({ ticketInfo, additionalInfo });
       }
     },
+    addTicket: (state, action) => {
+      const item = action.payload;
+      if (!state.tickets.includes(item)) {
+        state.tickets = [...state.tickets, action.payload];
+      }
+    },
   },
 })
 
-export const { login, faucet, buyTicket } = userSlice.actions
+export const { login, faucet, buyTicket, addTicket } = userSlice.actions
 
 export default userSlice.reducer

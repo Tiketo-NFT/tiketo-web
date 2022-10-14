@@ -10,7 +10,6 @@ export const festivalSlice = createSlice({
   reducers: {
     addFestival: (state, action) => {
       state.list = [...state.list, action.payload];
-      console.log(state.list);
     },
   },
 })

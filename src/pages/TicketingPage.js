@@ -60,7 +60,6 @@ function TicketingPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { festival } = location.state;
-  const [a, setA] = useState(0);
 
   useEffect(() => {
     const festivalIndex = festival.index;
@@ -73,7 +72,6 @@ function TicketingPage() {
         const { index, seat } = await ticketContract.methods.ticketInfos(i).call();
 
         if (index === festivalIndex) {
-          console.log(i, 'th try', 'index is', index, 'and seat is', seat);
           seatInfo[seat] = true;
         }
       }
