@@ -38,7 +38,8 @@ const StyleBalancePart = styled.div`
 `;
 
 function Header() {
-    const {address, balance} = useSelector((state) => state.user);
+    const {address, balance, tickets} = useSelector((state) => state.user);
+    console.log(address, balance, tickets);
 
     return (
         <StyleHeader>

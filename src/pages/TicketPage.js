@@ -19,10 +19,11 @@ function TicketPage() {
     function onDismiss() {
         setOpen(false)
     }
+
+    
     return (
         <Layout>
             <Body>
-
                 <SubtitleBar>
                     <p>My Tickets</p>
                     <FaSearch style={{ color: '#1E1E1E' }} />

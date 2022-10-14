@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -13,10 +13,9 @@ import TicketIcon from '../../assets/img/Ticket.svg';
 import CashIcon from '../../assets/img/Cash.png';
 
 import { KLIP_URL, API_PREPARE, API_RESULT } from '../../api/apiLinks';
-import Caver from "caver-js";
-import { PaperMoneyAbi } from '../../abi/PaperMoney.abi';
 import { PAPER_MONEY_ADDRESS, FACTORY_ADDRESS } from '../../address';
 import LoadingModal from '../../component/LoadingModal';
+import { buyTicket } from '../../features/user/userSlice';
 
 const BalanceBox = styled.div`
     display: flex;
@@ -34,6 +33,7 @@ function CheckPage() {
     const navigate = useNavigate();
     const { festival, seatNum, seatStr } = location.state;
     const { address, balance } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
     const onClickApprove = async () => {
         setModalOpen(true);
@@ -77,12 +77,30 @@ function CheckPage() {
                                 const status = res.data.result.status;
                                 if (status === 'success') {
                                     setModalOpen(false);
+                                    dispatch(buyTicket({
+                                        ticketInfo: {
+                                            index: festival.index,
+                                            seat: seatNum,
+                                            schedule: festival.schedule,
+                                            price: festival.price,
+                                        },
+                                        additionalInfo: {
+                                            seatStr,
+                                            festival,
+                                        }
+                                    }))
                                     clearInterval(timer);
-                                    navigate('/success', {state: {
-                                        festival,
-                                        seatStr,
-                                        txHash: res.data.result,
-                                    }});
+                                    navigate('/success', {
+                                        state: {
+                                            festival,
+                                            seatStr,
+                                            txHash: res.data.result.tx_hash,
+                                        }
+                                    });
+                                } else if (status === 'error') {
+                                    setModalOpen(false);
+                                    clearInterval(timer);
+                                    navigate('/fail');
                                 }
                             }
                         })
@@ -119,11 +137,11 @@ function CheckPage() {
                     <div>Click the button below and proceed with the payment using $pUSD in the connected wallet.</div>
 
                     <BalanceBox>
-                        <div style={{ display: 'flex', alignItems: 'center'}}>
-                        <div>
-                            <img src={WalletIcon} alt='' style={{ width: '24px', marginRight: '8px' }} />
-                        </div>
-                        <div>My Balance</div>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <div>
+                                <img src={WalletIcon} alt='' style={{ width: '24px', marginRight: '8px' }} />
+                            </div>
+                            <div>My Balance</div>
                         </div>
                         <div style={{ border: '1px solid #d4d4d4', borderRadius: '4px', marginLeft: '8px' }}>
                             <BalanceBox>
@@ -140,11 +158,11 @@ function CheckPage() {
 
 
                     <BalanceBox>
-                    <div style={{ display: 'flex', alignItems: 'center'}}>
-                        <div>
-                            <img src={TicketIcon} alt='' style={{ width: '24px', marginRight: '8px' }} />
-                        </div>
-                        <div>Ticket Price</div>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <div>
+                                <img src={TicketIcon} alt='' style={{ width: '24px', marginRight: '8px' }} />
+                            </div>
+                            <div>Ticket Price</div>
                         </div>
                         <div style={{ border: '1px solid #d4d4d4', borderRadius: '4px', marginLeft: '8px' }}>
                             <BalanceBox>
@@ -162,8 +180,8 @@ function CheckPage() {
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '48px', alignItems: 'center' }}>
                         <BackBtn onClick={() => navigate(-1)} style={{ marginLeft: '16px' }}>Back</BackBtn>
                         <div>
-                        <NextBtn style={{margin:'12px 0'}} onClick={onClickApprove}>Approve $pUSD</NextBtn>
-                        <NextBtn style={{margin:'12px 0'}} onClick={onClickPay}>Pay with $pUSD</NextBtn>
+                            <NextBtn style={{ margin: '12px 0' }} onClick={onClickApprove}>Approve $pUSD</NextBtn>
+                            <NextBtn style={{ margin: '12px 0' }} onClick={onClickPay}>Pay with $pUSD</NextBtn>
                         </div>
                     </div>
                     <LoadingModal open={modalOpen} />

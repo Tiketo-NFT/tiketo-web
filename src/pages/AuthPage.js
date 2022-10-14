@@ -46,6 +46,7 @@ export default function AuthPage() {
                 const address = res.data.result.klaytn_address
                 const balancePeb = await paperContract.methods.balanceOf(address).call();
                 const balance = caver.utils.convertFromPeb(balancePeb, 'KLAY');
+                console.log(balance);
                 dispatch(login({ address, balance }));
                 clearInterval(timerId);
               }
