@@ -48,8 +48,8 @@ function Header() {
             </StyleLogoPart>
             <StyleBalancePart>
                 <RiWallet3Line style={{ fontSize: '18px', paddingBottom: 'px' }} />
-                <p style={{ padding: '6px' }}>{balance}</p>
-                <p style={{ color: '#C2C2C2', fontStyle: 'italic' }}>$pUSD</p>
+                <p style={{ padding: '6px' }}>{Math.floor(balance * 100) / 100}</p>
+                <p style={{ color: '#C2C2C2', fontStyle: 'italic' }}>pUSD</p>
             </StyleBalancePart>
         </StyleHeader>
     );
