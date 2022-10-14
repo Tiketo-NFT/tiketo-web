@@ -87,7 +87,7 @@ function TicketPage() {
             </Body>}
 
             <BottomSheet onDismiss={onDismiss} open={open}>
-                <TicketInfoBottomSheet festival={selectedTicket.festival} ticket={selectedTicket.ticket} />
+                <TicketInfoBottomSheet style={{zIndex:5}} festival={selectedTicket.festival} seatStr={selectedTicket.seatStr} onClick={onDismiss} />
             </BottomSheet>
         </Layout>
     );

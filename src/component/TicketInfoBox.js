@@ -30,19 +30,18 @@ export const ImgCrop = styled.img`
 const FlexBox = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;
 
 
 function TicketInfoBox({ ticket, setOpen, setSelectedTicket }) {
   // ticket의 인덱스로 festivalInfo를 조회하고, 거기서 fullImg를 가져와야 한다.
-  const ticketInfo = DummyFestivalInfo;
-  console.log(ticket);
+  const {ticketInfo, additionalInfo} = ticket;
 
   const onClick = () => {
     setOpen((prev) => !prev);
-    setSelectedTicket({festival: ticketInfo, ticket:ticket});
+    setSelectedTicket({festival: additionalInfo.festival, seatStr: additionalInfo.seatStr});
   }
 
 
@@ -50,12 +49,12 @@ function TicketInfoBox({ ticket, setOpen, setSelectedTicket }) {
     <InfoBox onClick={onClick}>
       <FlexBox>
         <div style={{ width: '100px', height: '100px', position: 'relative' }}>
-          <ImgCrop src={ticketInfo.thumbImg} alt='' />
+          <ImgCrop src={additionalInfo.festival.thumbImg} alt='' style={{zIndex: 3}} />
         </div>
         <div>
-          <p style={{ fontWeight: 'bold', marginBottom: '8px' }}>{ticketInfo.name.length > 24 ? ticketInfo.name.substr(0, 24) + '...' : ticketInfo.name}</p>
-          <p style={{ color: '#676767', marginBottom: '8px', fontSize: '12px' }}>{ticketInfo.description}</p>
-          <p style={{ color: '#676767', marginBottom: '8px', fontSize: '12px' }}>1 Adult, {new Date(ticketInfo.schedule).toISOString().slice(0, 10)}, {ticket.seat}</p>
+          <p style={{ fontWeight: 'bold', marginBottom: '8px' }}>{additionalInfo.festival.name.length > 24 ? additionalInfo.festival.name.substr(0, 24) + '...' : additionalInfo.festival.name}</p>
+          <p style={{ color: '#676767', marginBottom: '8px', fontSize: '12px' }}>{additionalInfo.festival.description}</p>
+          <p style={{ color: '#676767', marginBottom: '8px', fontSize: '12px' }}>1 Adult, {additionalInfo.festival.schedule}, {additionalInfo.seatStr}</p>
         </div>
       </FlexBox>
     </InfoBox>
