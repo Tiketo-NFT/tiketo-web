@@ -40,7 +40,7 @@ const StyleBalancePart = styled.div`
 `;
 
 function Header() {
-    const { balance} = useSelector((state) => state.user);
+    const { balance } = useSelector((state) => state.user);
 
     return (
         <StyleHeader>

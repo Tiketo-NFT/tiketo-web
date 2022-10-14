@@ -15,8 +15,8 @@ export const userSlice = createSlice({
       state.address = address;
       state.balance = balance;
     },
-    faucet: (state) => {
-      state.balance -= 1
+    faucet: (state, action) => {
+      state.balance += action.payload;
     },
     buyTicket: (state, action) => {
       const { ticketInfo, additionalInfo } = action.payload;

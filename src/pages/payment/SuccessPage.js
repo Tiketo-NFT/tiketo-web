@@ -18,7 +18,7 @@ const LikeBottomSheet = styled.div`
   flex-grow: 1;
 `;
 
-const FlexBox = styled.div`
+export const FlexBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
