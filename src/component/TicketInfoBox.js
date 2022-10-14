@@ -1,19 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { InfoBox } from './FestivalInfoBox';
-import DummyImg from '../assets/img/example_festivals/0.png';
 import styled from 'styled-components';
 
-
-const DummyFestivalInfo = {
-  index: 0,
-  name: "The Fever - First World Tour in Asia",
-  description: "CKay | Jamsil, Seoul, South Korea",
-  thumbImg: DummyImg,
-  fullImg: DummyImg,
-  schedule: new Date(2022, 10, 14).getTime(),
-  price: 100,
-}
 
 export const ImgCrop = styled.img`
     position: absolute;
@@ -37,7 +25,7 @@ const FlexBox = styled.div`
 
 function TicketInfoBox({ ticket, setOpen, setSelectedTicket }) {
   // ticket의 인덱스로 festivalInfo를 조회하고, 거기서 fullImg를 가져와야 한다.
-  const {ticketInfo, additionalInfo} = ticket;
+  const { additionalInfo} = ticket;
 
   const onClick = () => {
     setOpen((prev) => !prev);
@@ -49,7 +37,7 @@ function TicketInfoBox({ ticket, setOpen, setSelectedTicket }) {
     <InfoBox onClick={onClick}>
       <FlexBox>
         <div style={{ width: '100px', height: '100px', position: 'relative' }}>
-          <ImgCrop src={additionalInfo.festival.thumbImg} alt='' style={{zIndex: 3}} />
+          <ImgCrop src={additionalInfo.festival.thumbImg} alt='' style={{zIndex: '1'}} />
         </div>
         <div>
           <p style={{ fontWeight: 'bold', marginBottom: '8px' }}>{additionalInfo.festival.name.length > 24 ? additionalInfo.festival.name.substr(0, 24) + '...' : additionalInfo.festival.name}</p>

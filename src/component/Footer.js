@@ -18,6 +18,7 @@ const StyledFooter = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    z-index: 3;
 `;
 
 const IconDiv = styled.div`
@@ -39,20 +40,20 @@ function Footer() {
         <StyledFooter>
             <Link to='/faucet'>
                 <IconDiv color={currentPath === '/faucet' ? '#F0F0F0' : ''}>
-                    <img src={currentPath === '/faucet' ? FaucetSelectedIcon : FaucetIcon} />
+                    <img src={currentPath === '/faucet' ? FaucetSelectedIcon : FaucetIcon} alt='' />
                 </IconDiv>
             </Link>
             <Link to='/'>
                 <IconDiv>
                     <IconDiv color={currentPath === '/' ? '#F0F0F0' : ''}>
-                        <img src={currentPath === '/' ? HomeSelectedIcon : HomeIcon} />
+                        <img src={currentPath === '/' ? HomeSelectedIcon : HomeIcon} alt='' />
                     </IconDiv>
                 </IconDiv>
             </Link>
             <Link to='/ticket'>
                 <IconDiv>
                     <IconDiv color={currentPath === '/ticket' ? '#F0F0F0' : ''}>
-                        <img src={currentPath === '/ticket' ? TicketSelectedIcon : TicketIcon} />
+                        <img src={currentPath === '/ticket' ? TicketSelectedIcon : TicketIcon} alt='' />
                     </IconDiv>
                 </IconDiv>
             </Link>

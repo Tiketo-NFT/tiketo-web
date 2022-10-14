@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation,useNavigate } from 'react-router-dom';
 import LayoutNoFooter from '../../component/LayoutNoFooter';
 import styled from 'styled-components';
@@ -35,7 +35,6 @@ function SuccessPage() {
     const navigate = useNavigate();
 
     const { festival, seatStr, txHash } = location.state;
-    console.log(festival, seatStr, txHash)
 
     return (
         <LayoutNoFooter>
@@ -56,7 +55,7 @@ function SuccessPage() {
                     <div>has been successful!</div>
                     </FlexBox>
                     <div style={{color:'#676767'}}>Ticket Information</div>
-                    <img src={festival.fullImg} style={{ width: '80%', margin: '18px 0' }} />
+                    <img src={festival.fullImg} style={{ width: '80%', margin: '18px 0' }} alt='' />
 
                     <Text>{festival.name}</Text>
                     <Text>{festival.description}</Text>

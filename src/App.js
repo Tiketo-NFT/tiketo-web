@@ -27,6 +27,7 @@ function App() {
       }
       fetchFestivals();
     }
+    // eslint-disable-next-line
   }, []);
   return (
     <FontDefault>

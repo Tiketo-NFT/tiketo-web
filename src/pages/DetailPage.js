@@ -37,7 +37,7 @@ function DetailPage() {
                 <div>
                     <div>
                         <h1 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '18px' }}>{festival.name}</h1>
-                        <img src={festival.fullImg} style={{ width: '100%', marginBottom: '18px' }} />
+                        <img src={festival.fullImg} style={{ width: '100%', marginBottom: '18px' }} alt='' />
                         <div style={{
                             width: '50px',
                             height: '24px',
@@ -47,7 +47,7 @@ function DetailPage() {
                             color: 'black',
                             marginBottom: '18px',
                         }}>
-                            <img src={CashImg} style={{ width: '16px', marginRight: '4px' }} />
+                            <img src={CashImg} style={{ width: '16px', marginRight: '4px' }} alt='' />
                             <span style={{ fontSize: '24px', fontWeight: 'bold', marginRight: '4px' }}>{festival.price}</span>pUSD
                         </div>
                         <p style={{ marginBottom: '8px' }}>{festival.description}</p>

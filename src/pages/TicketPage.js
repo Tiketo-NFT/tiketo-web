@@ -4,7 +4,6 @@ import { Body, SubtitleBar } from './HomePage';
 import { FaSearch } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import Caver from 'caver-js';
-import example_tickets from '../assets/img/example_festivals/example_tickets';
 import TicketInfoBox from '../component/TicketInfoBox';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 
@@ -26,7 +25,7 @@ const ticketContract = new caver.klay.Contract(TicketAbi, TICKET_ADDRESS);
 const factoryContract = new caver.klay.Contract(FactoryAbi, FACTORY_ADDRESS);
 
 function TicketPage() {
-    const { address, balance, tickets } = useSelector((state) => state.user);
+    const { address, tickets } = useSelector((state) => state.user);
     const dispatch = useDispatch();
     let ticketList = [];
     const [paramTickets, setParamTickets] = useState();
@@ -67,6 +66,7 @@ function TicketPage() {
                     }
                 }
             } else {
+                // eslint-disable-next-line
                 ticketList = tickets;
             }
         }

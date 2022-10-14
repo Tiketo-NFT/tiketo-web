@@ -32,12 +32,12 @@ function CheckPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const { festival, seatNum, seatStr } = location.state;
-    const { address, balance } = useSelector((state) => state.user);
+    const { balance } = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     const onClickApprove = async () => {
         setModalOpen(true);
-
+// eslint-disable-next-line
         const params = { "bapp": { "name": "Ticketo" }, "type": "execute_contract", "transaction": { "to": `${PAPER_MONEY_ADDRESS}`, "value": "0", "abi": "{ \"inputs\": [ { \"name\": \"spender\", \"type\": \"address\" }, { \"name\": \"amount\", \"type\": \"uint256\" } ], \"name\": \"approve\", \"outputs\": [], \"payable\": false, \"stateMutability\": \"nonpayable\", \"type\": \"function\" }", "params": `[\"${FACTORY_ADDRESS}\", \"${MAX_INT}\"]` } }
 
         await axios.post(API_PREPARE, params)
@@ -63,6 +63,7 @@ function CheckPage() {
 
     const onClickPay = async () => {
         setModalOpen(true);
+        // eslint-disable-next-line
         const params = { "bapp": { "name": "Ticketo" }, "type": "execute_contract", "transaction": { "to": `${FACTORY_ADDRESS}`, "value": "0", "abi": "{ \"inputs\": [ { \"name\": \"_index\", \"type\": \"uint256\" }, { \"name\": \"_schedule\", \"type\": \"uint256\" }, { \"name\": \"_seat\", \"type\": \"uint80\" } ], \"name\": \"buyTicket\", \"outputs\": [], \"payable\": false, \"stateMutability\": \"nonpayable\", \"type\": \"function\" }", "params": `[\"${festival.index}\", \"${festival.schedule}\", \"${seatNum}\"]` } }
 
         await axios.post(API_PREPARE, params)

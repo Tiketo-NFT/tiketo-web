@@ -6,15 +6,11 @@ import axios from 'axios';
 import { KLIP_URL, API_PREPARE, API_RESULT } from '../api/apiLinks';
 import Caver from 'caver-js';
 import { PaperMoneyAbi } from '../abi/PaperMoney.abi';
-import { FactoryAbi } from '../abi/Factory.abi';
-import { FACTORY_ADDRESS, PAPER_MONEY_ADDRESS, TICKET_ADDRESS } from '../address';
+import {  PAPER_MONEY_ADDRESS } from '../address';
 import { login } from '../features/user/userSlice';
 
-
-// const caver = new Caver(new Caver.providers.HttpProvider(process.env.REACT_APP_KLAYTN_MAINNET_NODE_URI));
 const caver = new Caver(new Caver.providers.HttpProvider('https://public-node-api.klaytnapi.com/v1/cypress'));
 const paperContract = new caver.klay.Contract(PaperMoneyAbi, PAPER_MONEY_ADDRESS);
-const factoryContract = new caver.klay.Contract(FactoryAbi, FACTORY_ADDRESS);
 
 
 const StyledAuth = styled.div`
@@ -46,7 +42,6 @@ export default function AuthPage() {
                 const address = res.data.result.klaytn_address
                 const balancePeb = await paperContract.methods.balanceOf(address).call();
                 const balance = caver.utils.convertFromPeb(balancePeb, 'KLAY');
-                console.log(balance);
                 dispatch(login({ address, balance }));
                 clearInterval(timerId);
               }
@@ -59,8 +54,10 @@ export default function AuthPage() {
   return (
     <StyledAuth>
       <img src={logo} alt='logo' style={{ width: 60 }} />
-      <h1 style={{ marginBottom: 100 }}>Ticketo</h1>
-      <img onClick={ConnectWallet} src={KlipLogin} style={{ width: 280, marginBottom: 200 }} />
+      <h1 style={{ marginBottom: 100 }}>Tiketo</h1>
+      <div style={{fontSize:'20px', marginBottom:'6px'}}>Fair Ticket Platform</div>
+      <div style={{fontSize:'20px', marginBottom:'32px'}}>To Prevent Ticket-Scalping</div>
+      <img onClick={ConnectWallet} src={KlipLogin} style={{ width: 280, marginBottom: '10vh' }} alt='' />
     </StyledAuth>
   )
 }

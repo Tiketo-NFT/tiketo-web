@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LayoutNoFooter from '../component/LayoutNoFooter';
 import SeatBox from '../component/SeatBox';
@@ -10,7 +10,6 @@ import LineImg from '../assets/img/line.svg';
 import Caver from "caver-js";
 import { TicketAbi } from '../abi/Ticket.abi';
 import { TICKET_ADDRESS } from '../address';
-import LoadingModal from '../component/LoadingModal';
 
 
 // 가상의 seatInfo 가정하고 렌더링해보기.
@@ -79,7 +78,7 @@ function TicketingPage() {
 
     fetchSeatInfo();
     setTimeout(() => setParamSeatInfo(seatInfo), 500);
-    console.log(paramSeatInfo);
+    // eslint-disable-next-line
   }, []);
 
 

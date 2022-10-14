@@ -40,7 +40,7 @@ function FestivalInfoBox({ festival }) {
             <div></div>
             <div style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
             <div>
-              <img src={CashImg} style={{ width: '16px', marginRight: '4px' }} />
+              <img src={CashImg} alt='' style={{ width: '16px', marginRight: '4px' }} />
             </div>
             <div style={{ fontSize: '24px', fontWeight: 'bold', marginRight: '4px' }}>{festival.price}</div>
             pUSD

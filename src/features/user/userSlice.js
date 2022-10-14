@@ -21,8 +21,6 @@ export const userSlice = createSlice({
     buyTicket: (state, action) => {
       const { ticketInfo, additionalInfo } = action.payload;
       const pushedItem = { ticketInfo, additionalInfo };
-      console.log(ticketInfo)
-      console.log(additionalInfo)
       if (!state.tickets.includes(pushedItem)) {
         state.tickets.push({ ticketInfo, additionalInfo });
       }

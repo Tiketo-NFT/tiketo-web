@@ -1,5 +1,5 @@
 import React from 'react';
-import logo_white from '../assets/logo_white.png';
+import logo_white from '../assets/logo_white.svg';
 import { RiWallet3Line } from 'react-icons/ri';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
@@ -17,6 +17,7 @@ const StyleHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     height: 76px;
+    z-index: 3;
 `;
 
 const StyleLogoPart = styled.div`
@@ -38,12 +39,12 @@ const StyleBalancePart = styled.div`
 `;
 
 function Header() {
-    const {address, balance, tickets} = useSelector((state) => state.user);
+    const { balance} = useSelector((state) => state.user);
 
     return (
         <StyleHeader>
             <StyleLogoPart>
-                <img src={logo_white} style={{ width: '60px' }} />
+                <img src={logo_white} style={{ width: '60px' }} alt='' />
                 <h1 style={{ paddingTop: '15px' }}>Tiketo</h1>
             </StyleLogoPart>
             <StyleBalancePart>
