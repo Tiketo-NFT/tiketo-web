@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { nanoid } from '@reduxjs/toolkit';
 
 const SEAT_NUMBER = ['01', '02', '03', '04', '05', '06', '07', '08',]
 const SEAT_ALPHA = ['', 'A', 'B', 'C', 'D', 'E']
@@ -38,49 +39,53 @@ function SeatBox({ seatInfo, setSeat, selectedSeat, setSelectedSeat }) {
   }
 
   return (
-    <div style={{ display: 'flex', width: '320px', marginTop: '12px' }}>
-      <GridSide>
-        {SEAT_ALPHA.map(function (alpha) {
-          return (
-            <Cell key={alpha}>
-              {alpha}
-            </Cell>
-          )
-        })}
-      </GridSide>
+    <>
+      {seatInfo &&
+        <div style={{ display: 'flex', width: '320px', marginTop: '12px' }} key={nanoid()}>
+          <GridSide>
+            {SEAT_ALPHA.map(function (alpha) {
+              return (
+                <Cell key={nanoid()}>
+                  {alpha}
+                </Cell>
+              )
+            })}
+          </GridSide>
 
-      <Grid>
-        {SEAT_NUMBER.map(function (num) {
-          return (
-            <Cell key={num}>
-              {num}
-            </Cell>
-          )
-        })}
-        {seatInfo.map(function (isReserved) {
-          cnt = cnt + 1;
-          const colorChoice = (selectedSeat === (cnt - 1)) ? 'black' : 'white';
-          return (
-            <>
-              {isReserved ?
-                <div style={{ width: '32px', height: '32px', border: '0.1px solid #9d9d9d', backgroundColor: '#d4d4d4' }} key={cnt}></div>
-                : <div onClick={onClickSeat} style={{ width: '32px', height: '32px', border: '0.1px solid #9d9d9d', backgroundColor: `${colorChoice}` }} key={cnt} id={cnt}></div>
-              }
-            </>
-          )
-        })}
-      </Grid>
+          <Grid>
+            {SEAT_NUMBER.map(function (num) {
+              return (
+                <Cell key={nanoid()}>
+                  {num}
+                </Cell>
+              )
+            })}
+            {seatInfo.map(function (isReserved) {
+              cnt = cnt + 1;
+              const colorChoice = (selectedSeat === (cnt - 1)) ? 'black' : 'white';
+              return (
+                <>
+                  {isReserved ?
+                    <div style={{ width: '32px', height: '32px', border: '0.1px solid #9d9d9d', backgroundColor: '#d4d4d4' }} key={nanoid()}></div>
+                    : <div onClick={onClickSeat} style={{ width: '32px', height: '32px', border: '0.1px solid #9d9d9d', backgroundColor: `${colorChoice}` }} key={nanoid()} id={cnt}></div>
+                  }
+                </>
+              )
+            })}
+          </Grid>
 
-      <GridSide>
-        {SEAT_ALPHA.map(function (num) {
-          return (
-            <Cell key={num}>
-              {num}
-            </Cell>
-          )
-        })}
-      </GridSide>
-    </div >
+          <GridSide>
+            {SEAT_ALPHA.map(function (num) {
+              return (
+                <Cell key={nanoid()}>
+                  {num}
+                </Cell>
+              )
+            })}
+          </GridSide>
+        </div>
+      }
+    </>
   );
 }
 
